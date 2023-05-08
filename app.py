@@ -2,7 +2,7 @@
 
 from authentication.authTools import login_pipeline, update_passwords, hash_password
 from database.db import Database
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from core.session import Sessions
 
 app = Flask(__name__)
@@ -26,7 +26,8 @@ def index_page():
     returns:
         - None
     """
-    return render_template('index.html', username=username, products=products, sessions=sessions)
+    #return render_template('index.html', username=username, products=products, sessions=sessions)
+    return redirect(url_for('home'))
 
 
 @app.route('/login')
@@ -43,8 +44,8 @@ def login_page():
     return render_template('login.html')
 
 
-@app.route('/home', methods=['POST'])
-def login():
+@app.route('/home', methods=['POST', 'GET'])
+def home():
     """
     Renders the home page when the user is at the `/home` endpoint with a POST request.
 
@@ -58,14 +59,18 @@ def login():
         - sessions: adds a new session to the sessions object
 
     """
-    username = request.form['username']
-    password = request.form['password']
-    if login_pipeline(username, password):
-        sessions.add_new_session(username, db)
-        return render_template('home.html', products=products, sessions=sessions)
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if login_pipeline(username, password):
+            sessions.add_new_session(username, db)
+            return render_template('home.html', products=products, sessions=sessions)
+        else:
+            print(f"Incorrect username ({username}) or password ({password}).")
+            return render_template('index.html')
     else:
-        print(f"Incorrect username ({username}) or password ({password}).")
-        return render_template('index.html')
+        return render_template('home.html', products=products)
+
 
 
 @app.route('/register')
@@ -135,6 +140,40 @@ def checkout():
     user_session.submit_cart()
 
     return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
+
+
+@app.route('/about', methods=['POST', 'GET'])
+def about():
+    return render_template('about.html')
+
+@app.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact.html')
+
+@app.route('/submit_contact', methods=['POST'])
+def submit_contact():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    email = request.form['email']
+    message = request.form['message']
+
+    return "Thanks for contacting us! We'll get back to you soon."
+
+@app.route('/shop', methods=['POST', 'GET'])
+def shop():
+    return render_template('shop.html')
+
+@app.route('/privacy_policy', methods=['POST', 'GET'])
+def privacy_policy():
+    return render_template('privacy_policy.html')
+
+@app.route('/terms_conditions', methods=['POST', 'GET'])
+def terms_conditions():
+    return render_template('terms_conditions.html')
+
+@app.route('/shipping_returns', methods=['POST', 'GET'])
+def shipping_returns():
+    return render_template('shipping_returns.html')
 
 
 if __name__ == '__main__':
