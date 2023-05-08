@@ -719,3 +719,23 @@ class Database:
         self.cursor.execute(
             "UPDATE sales SET cost = ? WHERE id = ?", (new_cost, sale_id))
         self.connection.commit()
+
+    # --------------------------------------------
+    # ------------------ CONTACT FORM ------------
+    # --------------------------------------------
+
+    def insert_new_contact_submission(self, first_name: str, last_name: str, email: str, message_form: str):
+        """
+        Inserts a contact form submission into the database.
+
+        args:
+            
+
+        returns:
+            - None
+        """
+        self.cursor.execute(
+            "INSERT INTO contact_forms (first_name, last_name, email, message_form) VALUES (?, ?, ?, ?)",
+            (first_name, last_name, email, message_form))
+        self.connection.commit()
+

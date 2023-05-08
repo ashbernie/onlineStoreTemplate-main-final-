@@ -155,9 +155,10 @@ def submit_contact():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
-    message = request.form['message']
+    message_form = request.form['message']
+    db.insert_new_contact_submission(first_name, last_name, email, message_form)
 
-    return "Thanks for contacting us! We'll get back to you soon."
+    return render_template('submit_contact.html')
 
 @app.route('/shop', methods=['POST', 'GET'])
 def shop():
