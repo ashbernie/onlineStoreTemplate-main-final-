@@ -11,13 +11,13 @@ INSERT into `users` (`username`, `password_hash`, `email`, `first_name`, `last_n
 VALUES ('bliskov', '1e4b9ae956cad1385cfa6fffd8323dd16c3fe18c54e6447e49bddef2138d042e84e1505a541c6ef19a5026e684b2559efd366145870a0a8d4d4173c0877f6cd2', 'barbara@thor.com', 'Barbara', 'Liskov');
 
 INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `category`)
-VALUES ('Logo Graphic Tee', 'An edible cultivation of the Malus genus.', 40.00, 100, 'static/images/apple.jpeg', 'Fruit');
+VALUES ('Logo Graphic Tee', 'Lykos classic Graphic Tee with a bold new design.', 40.00, 100, 'static/images/design_3.png', 'Fruit');
 
 INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `category`)
-VALUES ('Wolves Graphic Tee', 'A long curved fruit which grows in clusters and has soft pulpy flesh and yellow skin when ripe.', 40.00, 100, 'static/images/banana.jpeg', 'Fruit');
+VALUES ('Wolves Graphic Tee', '100% Cotton T-Shirt sporting Lykos Brand.', 40.00, 100, 'static/images/design_1.png', 'Fruit');
 
 INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `category`)
-VALUES ('Pocket Graphic Tee', 'The best fruit on the planet.', 40.00, 100, 'static/images/mango.jpeg', 'Fruit');
+VALUES ('Pocket Graphic Tee', 'Lykos logo on T-shirt.', 40.00, 100, 'static/images/design_2.png', 'Fruit');
 
 INSERT into `sales` (`transaction_id`, `username`, `item_id`, `quantity`, `sale_date`, `cost`)
 VALUES ('1', 'aturing', '1', 10, '2022-12-21 7:30:30', 5.50);

@@ -2,39 +2,95 @@
 
 {% block content %}
 
-<div class="row" id="products_page">
-    <div class="col-md-12">
-        <h3>Products</h3>
-        <hr>
-        <div class="row">
-            <form action="/checkout" method="post">
-                <div class="form-group">
-                    <div class="row">
-                        {% for product in products %}
-                        <div class="col-md-4">
-                            <div class="product_card" id="product_card">
-                                <img src="{{ product.image_url }}" class="product_card-img" alt="...">
-                                <div class="product_card-body">
-                                    <h5 class="product_card-title">{{ product.item_name }}</h5>
-                                    <p class="product_card-text">{{ product.info }}</p>
-                                    <p class="product_card-price">${{ product.price }}</p>
-                                    <input type="number" class="quantity" id={{product.id}} name={{product.id}}
-                                        placeholder="0">
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" id="index_buttons">
-                        <button type="submit" class="btn btn-primary" id="checkout_button">Order</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
+header {
+    padding-top: 50px;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+}
+
+.about-us-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 0;
+}
+
+.about-us-text {
+    width: 45%;
+}
+
+.about-us-image {
+    width: 45%;
+}
+
+.about-us-image img {
+    width: 100%;
+    height: auto;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .about-us-content {
+        flex-direction: column;
+    }
+
+    .about-us-text,
+    .about-us-image {
+        width: 100%;
+    }
+}
+
+</style>
+
+<header>
+    <h1>About Us</h1>
+</header>
+<section class="about-us-content">
+    <div class="about-us-text">
+        <h2>Our Story</h2>
+        <p>Welcome to Lykos, where athletic apparel transcends beyond function and becomes a statement of purpose. We're more than just a clothing brand; we're a lifestyle that embodies the essence of strength, resilience, and relentless pursuit of personal growth.
+        At Lykos, we believe in the power of movement to transform lives. Our meticulously engineered garments are designed to elevate your performance, enhance your comfort, and inspire you to unleash your full potential. Join the Lykos movement and embrace the active lifestyle you deserve. Live boldly, train passionately, and conquer your goals with confidence.</p>
+    </div>
+    <div class="about-us-image">
+        <img src="static/images/background_2.png" alt="Our Story Image">
+    </div>
+</section>
+<section class="about-us-content">
+    <div class="about-us-image">
+        <img src="static/images/background.png" alt="Our Team Image">
+    </div>
+    <div class="about-us-text">
+        <h2>Our Team</h2>
+        <p>Welcome to the heart of Lykos, where every member of our team plays an integral role in shaping the brand's vision and bringing it to life. United by our shared passion for performance, innovation, and sustainability, we're dedicated to crafting athletic apparel that empowers you to live an active and fulfilling lifestyle.
+
+            Our diverse team consists of talented designers, skilled artisans, and experienced professionals, each with their own unique strengths and expertise. Together, we strive to create high-quality, functional, and stylish garments that not only elevate your performance but also make a positive impact on our planet.
+            
+            At Lykos, we believe that collaboration, open communication, and mutual respect are the pillars of our success. We're proud to work side by side, pushing the boundaries of what's possible and continually raising the bar for athletic apparel.
+            
+            Join us on our journey to revolutionize the world of athletic wear and experience the difference that comes from a team fueled by passion, commitment, and the unwavering belief in our mission.</p>
+    </div>
+</section>
 
 {% endblock %}
